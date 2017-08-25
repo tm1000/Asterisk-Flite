@@ -34,7 +34,6 @@
 #include "asterisk.h"
 
 ASTERISK_REGISTER_FILE()
-#define AST_MODULE_SELF self_module()
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -82,6 +81,11 @@ static const char *cachedir;
 static const char *voice_name;
 static struct ast_config *cfg;
 static struct ast_flags config_flags =  { 0 };
+
+EXPORT_DEF struct ast_module* self_module(void)
+{
+	return ast_module_info->self;
+}
 
 static int read_config(const char *flite_conf)
 {
